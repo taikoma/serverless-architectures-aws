@@ -1,7 +1,7 @@
 var configConstants = {
 	auth0: {
-		domain: 'AUTH0-DOMAIN',
-		clientId: 'AUTH0-CLIENTID'
+		domain: 'datatennisnet.auth0.com',
+		clientId: 'VqXkt2PNxS2Ht4WO7WkgiPppDYd1Fgo6'
 	},
   apiBaseUrl: 'https://API-GATEWAY-URL/dev'
 };

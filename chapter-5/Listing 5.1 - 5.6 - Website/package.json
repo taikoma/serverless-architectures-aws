@@ -4,16 +4,19 @@
   "description": "The 24 Hour Video Website",
   "main": "index.js",
   "local-web-server": {
-  	"port": 8100,
-  	"forbid": "*.json"
+    "port": 8100,
+    "forbid": "*.json"
   },
   "scripts": {
-  	"start": "ws",
+    "start": "ws",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Sbarski",
   "license": "MIT",
   "devDependencies": {
     "local-web-server": "^1.1.0"
+  },
+  "dependencies": {
+    "auth0-lock": "^11.26.1"
   }
 }
