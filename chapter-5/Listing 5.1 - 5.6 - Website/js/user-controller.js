@@ -5,6 +5,7 @@
  * Last Updated: Feb 11, 2017
  */
 
+// https://qiita.com/yohachi/items/4d83da043a55649ab7e7
 
 var userController = {
   data: {
@@ -28,11 +29,38 @@ var userController = {
     this.uiElements.profileImage = $('#profilepicture');
 
     this.data.config = config;
-    this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
+    // this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);//for ver 9
+    this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain,{//for ver 11
+      popup:true,
+      auth: {
+        params:{
+          scope: 'openid email user_metadata picture'
+        }
+      }      
+    });
+    //コールバック関数はauth0Lock.onで登録
+    this.data.auth0Lock.on('authenticated',function(authResult){
+      console.log("debug");
+
+      localStorage.setItem('userToken', authResult.accessToken);
+      that.configureAuthenticatedRequests();
+
+      that.data.auth0Lock.getUserInfo(authResult.accessToken,function(err,userInfo) {            
+                  if(!err){
+                    console.log("can get user info");
+                    console.log(userInfo)
+                    that.showUserAuthenticationDetails(userInfo);
+                  }else{
+                    console.log("cannot get user info");
+                  }
+                });
+    });  
 
     var idToken = localStorage.getItem('userToken');
 
     if (idToken) {
+      console.log("idToken")
+      console.log(idToken)
       this.configureAuthenticatedRequests();
       this.data.auth0Lock.getProfile(idToken, function(err, profile) {
         if (err) {
@@ -67,23 +95,7 @@ var userController = {
     var that = this;
 
     this.uiElements.loginButton.click(function(e) {
-      var params = {
-        authParams: {
-          scope: 'openid email user_metadata picture'
-        }
-      };
-
-      that.data.auth0Lock.show(params, function(err, profile, token) {
-        if (err) {
-          // Error callback
-          alert('There was an error');
-        } else {
-          // Save the JWT token.
-          localStorage.setItem('userToken', token);
-          that.configureAuthenticatedRequests();
-          that.showUserAuthenticationDetails(profile);
-        }
-      });
+      that.data.auth0Lock.show()
     });
 
     this.uiElements.logoutButton.click(function(e) {
@@ -94,12 +106,18 @@ var userController = {
       that.uiElements.loginButton.show();
     });
 
-    this.uiElements.profileButton.click(function(e) {
+    this.uiElements.profileButton.click(function(e) {//APIGateWay追加後にこのコードを追加　P145
       var url = that.data.config.apiBaseUrl + '/user-profile';
-
+      
       $.get(url, function(data, status) {
-        $('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
-        $('#user-profile-modal').modal();
+        console.log("user-profile")
+        console.log(url)
+        console.log(data)
+        // $('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
+        // $('#user-profile-modal').modal();
+        $.get(url,function(data,status){
+          alert(JSON.stringify(data));
+        })
       })
     });
   }
