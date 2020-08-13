@@ -5,6 +5,13 @@
 
 サンプルコードが古くて動かないものがあるので、改変したコードをアップロード
 
+### Listing 5.1 - 5.6 - Website
+- ウェブサイト構築  
+- 認証機能(Auth0)の追加
+- 
+
+
+
 ### Listing 9.4 - Updated Transcode Function
 24-Hour VideoへのFirebaseの追加
 
