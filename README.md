@@ -35,17 +35,17 @@ firebase.initializeApp({
 ```
 firebase 8.7.0  
 
-firebase-adminをnpm installする
+firebase-adminをnpm installする  
 `$npm install firebase-admin --save`
 
 #### Runtime.ImportModuleErrorエラー
 Failed to load gRPC binary module because it was not installed for the current system\nExpected directory: node-v72-linux-x64-glibc\nFound
 
-npmのバージョンに合わせてRebuildする
+npmのバージョンに合わせてRebuildする  
 `node --version
 v12.16.3`
 
-`m rebuild grpc --target=12.16.3 --target_arch=x64 --target_platform=linux --target_libc=glibc`
+`npm rebuild grpc --target=12.16.3 --target_arch=x64 --target_platform=linux --target_libc=glibc`
 
 #### TypeErrorエラー
 ```js
@@ -55,7 +55,7 @@ var database = firebase.database().ref();
 instance.INTERNAL.registerComponent is not a function  
 
 `$npm install @firebase/app -save`
-で解決
+で解決  
 
 参考
 [instance.INTERNAL.registerComponent is not a function](https://stackoverflow.com/questions/59275670/cloud-function-deployment-typeerror-instance-internal-registercomponent-is-no)
