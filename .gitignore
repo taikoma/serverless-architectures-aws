@@ -5,6 +5,7 @@ npm-debug.log*
 .DS_Store
 
 .env
+config_ref.js
 
 # Runtime data
 pids

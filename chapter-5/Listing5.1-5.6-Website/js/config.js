@@ -1,8 +1,7 @@
-var configConstants={
-    auth0:{
-        domain: process.env.DOMAIN,
-        clientId: process.env.CLIENTID
+var configConstants = {
+    auth0: {
+        domain: DOMAIN,
+        clientId: CLIENTID
     },
-    apiBaseUrl: process.env.APIBASEURL
-
-}
+  apiBaseUrl: APIBASEURL
+};
