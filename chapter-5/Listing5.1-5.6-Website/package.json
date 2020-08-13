@@ -17,6 +17,7 @@
     "local-web-server": "^1.1.0"
   },
   "dependencies": {
-    "auth0-lock": "^11.26.1"
+    "auth0-lock": "^11.26.1",
+    "dotenv": "^8.2.0"
   }
 }
