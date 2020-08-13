@@ -8,6 +8,8 @@
 ### Listing 9.4 - Updated Transcode Function
 24-Hour VideoへのFirebaseの追加
 
+動画をS3にアップロードしたらtranscode-video(Lambda関数)でFirebaseのデータベース情報を更新する
+
 - Firebaseのセットアップ
 - サービスアカウントを作成し秘密鍵となるjsonファイルをzip化してLambda関数にアップロード
 - Lambda関数(transcode-video)の環境変数にjsonファイル名、サービスアカウント名などを設定
